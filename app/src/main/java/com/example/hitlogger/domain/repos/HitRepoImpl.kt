@@ -39,8 +39,8 @@ class HitRepoImpl @Inject constructor(
 
     private fun String.toHitType(): HitType {
         return when(this) {
-            "Cutting" -> HitType.Cutting
-            "Thrust" -> HitType.Thrust
+            "Stab" -> HitType.Stab
+            "Slash" -> HitType.Slash
             else -> HitType.Unknown
         }
     }

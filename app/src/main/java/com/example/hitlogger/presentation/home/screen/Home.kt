@@ -80,7 +80,7 @@ private fun LazyItemScope.HitItem(hit: Hit) {
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(mDimens.paddingSmall)
+                .padding(mDimens.paddingMedium)
         ) {
             Text(
                 text = hit.date,
@@ -98,8 +98,8 @@ private fun LazyItemScope.HitItem(hit: Hit) {
 
 private fun HitType.toLabelRes(): Int {
     return when(this) {
-        HitType.Cutting -> R.string.cut_hit_type
-        HitType.Thrust -> R.string.thrust_hit_type
+        HitType.Stab -> R.string.cut_hit_type
+        HitType.Slash -> R.string.thrust_hit_type
         HitType.Unknown -> R.string.unknown_hit_type
     }
 }

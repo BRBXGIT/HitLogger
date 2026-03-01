@@ -1,6 +1,12 @@
 plugins {
+    // Application
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.compose)
+    // Kotlin
+    alias(libs.plugins.kotlin.android)
+    // Compose compiler
+    alias(libs.plugins.compose.compiler)
+    // Ksp
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -30,29 +36,49 @@ android {
             )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        isCoreLibraryDesugaringEnabled = true
+
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
+
     buildFeatures {
         compose = true
+    }
+
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+            freeCompilerArgs.add("-Xcontext-parameters")
+        }
     }
 }
 
 dependencies {
+
+    // Dagger
+    implementation(libs.dagger)
+    ksp(libs.dagger.compiler)
+    // Room
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    // Core
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    // Activity
     implementation(libs.androidx.activity.compose)
+    // Compose bom
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.graphics)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    // Compose runtime
+    implementation(libs.androidx.compose.runtime)
+    // Compose preview
+    implementation(libs.androidx.ui.tooling.preview)
+    debugImplementation(libs.androidx.ui.tooling)
+    // Material 3
+    implementation(libs.androidx.material3.android)
+    //Calendar dialog
+    implementation(libs.calendarPicker)
+    // Jdk libs (for supporting new Api on old android versions)
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 }

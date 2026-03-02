@@ -1,7 +1,7 @@
 package com.example.hitlogger.domain.repos
 
-import com.example.hitlogger.data.HitDao
-import com.example.hitlogger.data.HitEntity
+import com.example.hitlogger.data.db.HitDao
+import com.example.hitlogger.data.db.HitEntity
 import com.example.hitlogger.domain.models.Hit
 import com.example.hitlogger.domain.models.HitType
 import kotlinx.coroutines.flow.Flow

@@ -1,4 +1,4 @@
-package com.example.hitlogger.data
+package com.example.hitlogger.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

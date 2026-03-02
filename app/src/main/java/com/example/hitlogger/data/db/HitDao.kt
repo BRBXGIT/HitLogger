@@ -1,4 +1,4 @@
-package com.example.hitlogger.data
+package com.example.hitlogger.data.db
 
 import androidx.room.Dao
 import androidx.room.Query

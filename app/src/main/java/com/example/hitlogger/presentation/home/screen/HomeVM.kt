@@ -1,5 +1,6 @@
 package com.example.hitlogger.presentation.home.screen
 
+import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hitlogger.domain.repos.HitRepo
@@ -12,6 +13,7 @@ import kotlinx.coroutines.flow.update
 import java.time.LocalDate
 import javax.inject.Inject
 
+@Stable
 class HomeVM @Inject constructor(hitRepo: HitRepo): ViewModel() {
 
     private val dateUtils = DateUtils()

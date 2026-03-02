@@ -2,7 +2,7 @@ package com.example.hitlogger.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.hitlogger.data.HitDb
+import com.example.hitlogger.data.db.HitDb
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

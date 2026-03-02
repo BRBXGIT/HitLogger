@@ -1,4 +1,4 @@
-package com.example.hitlogger.data
+package com.example.hitlogger.data.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

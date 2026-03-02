@@ -8,5 +8,5 @@ import java.time.LocalDateTime
 @Immutable
 data class HomeState(
     val hits: List<Hit> = emptyList(),
-    val date: String = DateUtils.format(LocalDateTime.now().toLocalDate())
+    val date: String = DateUtils().format(LocalDateTime.now().toLocalDate())
 )

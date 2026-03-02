@@ -24,11 +24,15 @@ class HomeVM @Inject constructor(
 
     private val _allHits = hitRepo.getHits()
     private val _selectedDate = MutableStateFlow(LocalDate.now())
+    private val _isDevicesBSVisible = MutableStateFlow(false)
 
     val state = combine(
         flow = _allHits,
-        flow2 = _selectedDate
-    ) { hits, date ->
+        flow2 = _selectedDate,
+        flow3 = bluetoothController.scannedDevices,
+        flow4 = bluetoothController.pairedDevices,
+        flow5 = _isDevicesBSVisible
+    ) { hits, date, scanned, paired, devicesBSVisible ->
         val dateString = dateUtils.format(date)
 
         val filteredHits = hits.filter { hit ->
@@ -37,7 +41,10 @@ class HomeVM @Inject constructor(
 
         HomeState(
             hits = filteredHits,
-            date = dateString
+            date = dateString,
+            scannedDevices = scanned,
+            pairedDevices = paired,
+            isDevicesBSVisible = devicesBSVisible
         )
     }.stateIn(
         scope = viewModelScope,
@@ -48,9 +55,18 @@ class HomeVM @Inject constructor(
     // --- Intents ---
     fun sendIntent(intent: HomeIntent) {
         when(intent) {
+
+            // --- Date ---
             HomeIntent.OnMinusDay -> _selectedDate.update { it.minusDays(1) }
             HomeIntent.OnPlusDay -> _selectedDate.update { it.plusDays(1) }
             is HomeIntent.OnSelectDate -> _selectedDate.value = intent.date
+
+            // --- Ui ---
+            HomeIntent.ToggleDevicesBS -> _isDevicesBSVisible.value = !_isDevicesBSVisible.value
         }
     }
+
+    fun startScan() = bluetoothController.startDiscovery()
+
+    fun stopScan() = bluetoothController.stopDiscovery()
 }

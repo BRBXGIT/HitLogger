@@ -3,4 +3,7 @@
     <string name="unknown_hit_type">Unknown</string>
     <string name="cut_hit_type">Cut</string>
     <string name="thrust_hit_type">Thrust</string>
+
+    <string name="scanned_devices">Scanned devices</string>
+    <string name="paired_devices">Paired devices</string>
 </resources>

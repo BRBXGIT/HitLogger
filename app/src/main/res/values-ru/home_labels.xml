@@ -3,4 +3,7 @@
     <string name="unknown_hit_type">Неизвестно</string>
     <string name="cut_hit_type">Режущий</string>
     <string name="thrust_hit_type">Колющий</string>
+
+    <string name="scanned_devices">Найденные устройства</string>
+    <string name="paired_devices">Подключенные устройства</string>
 </resources>

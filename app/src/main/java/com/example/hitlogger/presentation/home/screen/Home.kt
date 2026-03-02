@@ -3,33 +3,24 @@
 package com.example.hitlogger.presentation.home.screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.hitlogger.R
-import com.example.hitlogger.domain.models.hit.Hit
 import com.example.hitlogger.domain.models.hit.HitType
+import com.example.hitlogger.presentation.common.components.LC
+import com.example.hitlogger.presentation.common.components.ListItem
 import com.example.hitlogger.presentation.common.theme.mColors
-import com.example.hitlogger.presentation.common.theme.mDimens
-import com.example.hitlogger.presentation.common.theme.mShapes
-import com.example.hitlogger.presentation.common.theme.mTypography
+import com.example.hitlogger.presentation.home.components.DevicesBS
+import com.example.hitlogger.presentation.home.components.DevicesFab
 import com.example.hitlogger.presentation.home.components.TopBar
 
 @Composable
@@ -38,6 +29,7 @@ fun Home(homeVM: HomeVM) {
 
     val topBarScrollBehaviour = TopAppBarDefaults.pinnedScrollBehavior()
     Scaffold(
+        floatingActionButton = { DevicesFab(homeVM::sendIntent) },
         topBar = {
             TopBar(
                 date = state.date,
@@ -47,9 +39,15 @@ fun Home(homeVM: HomeVM) {
         },
         modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(mDimens.spacingMedium),
-            contentPadding = PaddingValues(vertical = mDimens.paddingMedium),
+        if (state.isDevicesBSVisible) {
+            DevicesBS(
+                scannedDevices = state.scannedDevices,
+                pairedDevices = state.pairedDevices,
+                onIntent = homeVM::sendIntent
+            )
+        }
+
+        LC(
             modifier = Modifier
                 .fillMaxSize()
                 .background(mColors.background)
@@ -59,39 +57,11 @@ fun Home(homeVM: HomeVM) {
                 items = state.hits,
                 key = { hit -> hit.id }
             ) { hit ->
-                HitItem(hit)
+                ListItem(
+                    leadingText = hit.date,
+                    trailingText = stringResource(hit.hitType.toLabelRes())
+                )
             }
-        }
-    }
-}
-
-@Composable
-private fun LazyItemScope.HitItem(hit: Hit) {
-    Surface(
-        shape = mShapes.small,
-        color = mColors.surfaceContainerHigh,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = mDimens.paddingMedium)
-            .animateItem()
-    ) {
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(mDimens.paddingMedium)
-        ) {
-            Text(
-                text = hit.date,
-                style = mTypography.titleMedium
-            )
-
-            Text(
-                text = stringResource(hit.hitType.toLabelRes()),
-                style = mTypography.titleMedium,
-                color = mColors.primary
-            )
         }
     }
 }

@@ -3,7 +3,8 @@ package com.example.hitlogger.presentation.home.screen
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hitlogger.domain.repos.HitRepo
+import com.example.hitlogger.domain.repos.bluetooth.BluetoothController
+import com.example.hitlogger.domain.repos.hit.HitRepo
 import com.example.hitlogger.presentation.home.components.DateUtils
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -14,7 +15,10 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 @Stable
-class HomeVM @Inject constructor(hitRepo: HitRepo): ViewModel() {
+class HomeVM @Inject constructor(
+    hitRepo: HitRepo,
+    private val bluetoothController: BluetoothController
+): ViewModel() {
 
     private val dateUtils = DateUtils()
 

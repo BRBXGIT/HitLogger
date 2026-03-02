@@ -24,8 +24,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.hitlogger.R
-import com.example.hitlogger.domain.models.Hit
-import com.example.hitlogger.domain.models.HitType
+import com.example.hitlogger.domain.models.hit.Hit
+import com.example.hitlogger.domain.models.hit.HitType
 import com.example.hitlogger.presentation.common.theme.mColors
 import com.example.hitlogger.presentation.common.theme.mDimens
 import com.example.hitlogger.presentation.common.theme.mShapes

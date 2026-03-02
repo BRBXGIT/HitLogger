@@ -13,8 +13,8 @@ fun HitLoggerTheme(
     content: @Composable () -> Unit
 ) {
     val colorScheme = when(darkTheme) {
-        true -> LightLavenderScheme
-        false -> DarkLavenderScheme
+        true -> DarkLavenderScheme
+        false -> LightLavenderScheme
     }
 
     CompositionLocalProvider(

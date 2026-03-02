@@ -1,7 +1,7 @@
 package com.example.hitlogger.di
 
-import com.example.hitlogger.domain.repos.HitRepo
-import com.example.hitlogger.domain.repos.HitRepoImpl
+import com.example.hitlogger.domain.repos.hit.HitRepo
+import com.example.hitlogger.domain.repos.hit.HitRepoImpl
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton

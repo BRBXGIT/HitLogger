@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.compose.compiler)
     // Ksp
     alias(libs.plugins.ksp)
+    // Serialization
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -58,6 +60,8 @@ android {
 
 dependencies {
 
+    // Navigation
+    implementation(libs.navigation.compose)
     // Dagger
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)

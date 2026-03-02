@@ -1,4 +1,4 @@
-package com.example.hitlogger.domain.models
+package com.example.hitlogger.domain.models.hit
 
 import androidx.compose.runtime.Immutable
 

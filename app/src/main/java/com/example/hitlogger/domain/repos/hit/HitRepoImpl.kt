@@ -1,9 +1,9 @@
-package com.example.hitlogger.domain.repos
+package com.example.hitlogger.domain.repos.hit
 
 import com.example.hitlogger.data.db.HitDao
 import com.example.hitlogger.data.db.HitEntity
-import com.example.hitlogger.domain.models.Hit
-import com.example.hitlogger.domain.models.HitType
+import com.example.hitlogger.domain.models.hit.Hit
+import com.example.hitlogger.domain.models.hit.HitType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

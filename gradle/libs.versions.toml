@@ -38,6 +38,9 @@ customPickers = "1.3.0"
 # Jdk libs
 desugar_jdk_libs = "2.1.5"
 
+# Navigation
+composeNavigation = "2.9.7"
+
 
 [libraries]
 # Core
@@ -73,6 +76,9 @@ calendarPicker = { module = "com.maxkeppeler.sheets-compose-dialogs:calendar", v
 # Jdk libs
 desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 
+# Naivation
+navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
+
 
 [plugins]
 # Application
@@ -92,3 +98,6 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "kspPlugin" }
 
 # Android
 android-library = { id = "com.android.library", version.ref = "agp" }
+
+# Serialization
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

@@ -11,4 +11,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.jvm) apply false
     // Ksp
     alias(libs.plugins.ksp) apply false
+    // Serialization
+    alias(libs.plugins.kotlin.serialization) apply false
 }

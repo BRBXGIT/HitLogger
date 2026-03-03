@@ -1,5 +1,6 @@
 package com.example.hitlogger.presentation.home.screen
 
+import com.example.hitlogger.domain.models.bluetooth.BluetoothDevice
 import java.time.LocalDate
 
 sealed interface HomeIntent {
@@ -11,4 +12,7 @@ sealed interface HomeIntent {
 
     // --- Ui ---
     data object ToggleDevicesBS: HomeIntent
+
+    // Bluetooth
+    data class OnDeviceClick(val device: BluetoothDevice): HomeIntent
 }

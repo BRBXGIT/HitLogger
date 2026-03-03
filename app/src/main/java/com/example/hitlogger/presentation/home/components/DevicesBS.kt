@@ -2,7 +2,7 @@
 
 package com.example.hitlogger.presentation.home.components
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
@@ -14,6 +14,9 @@ import com.example.hitlogger.R
 import com.example.hitlogger.domain.models.bluetooth.BluetoothDevice
 import com.example.hitlogger.presentation.common.components.LC
 import com.example.hitlogger.presentation.common.components.ListItem
+import com.example.hitlogger.presentation.common.theme.mDimens
+import com.example.hitlogger.presentation.common.theme.mShapes
+import com.example.hitlogger.presentation.common.theme.mTypography
 import com.example.hitlogger.presentation.home.screen.HomeIntent
 
 @Composable
@@ -23,32 +26,18 @@ fun DevicesBS(
     onIntent: (HomeIntent) -> Unit
 ) {
     ModalBottomSheet(
+        shape = mShapes.small,
         onDismissRequest = { onIntent(HomeIntent.ToggleDevicesBS) }
     ) {
-        LC {
-            item(
-                key = "scanned_devices"
-            ) {
-                Text(
-                    text = stringResource(R.string.scanned_devices)
-                )
-            }
-
-            items(
-                items = scannedDevices,
-                key = { device -> device.address }
-            ) {
-                ListItem(
-                    leadingText = it.name ?: it.address,
-                    modifier = Modifier.clickable(onClick = {})
-                )
-            }
-
+        LC(
+            modifier = Modifier.padding(horizontal = mDimens.paddingMedium)
+        ) {
             item(
                 key = "paired_devices"
             ) {
                 Text(
-                    text = stringResource(R.string.paired_devices)
+                    text = stringResource(R.string.paired_devices),
+                    style = mTypography.bodyLarge
                 )
             }
 
@@ -58,7 +47,26 @@ fun DevicesBS(
             ) {
                 ListItem(
                     leadingText = it.name ?: it.address,
-                    modifier = Modifier.clickable(onClick = {})
+                    onClick = { onIntent(HomeIntent.OnDeviceClick(it)) }
+                )
+            }
+
+            item(
+                key = "scanned_devices"
+            ) {
+                Text(
+                    text = stringResource(R.string.scanned_devices),
+                    style = mTypography.bodyLarge
+                )
+            }
+
+            items(
+                items = scannedDevices,
+                key = { device -> device.address }
+            ) {
+                ListItem(
+                    leadingText = it.name ?: it.address,
+                    onClick = { onIntent(HomeIntent.OnDeviceClick(it)) }
                 )
             }
         }
